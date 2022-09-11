@@ -1,0 +1,134 @@
+@import url("styleReset.css");
+@import url("animations.css");
+@import url("common.css");
+@import url("global.css");
+
+html,
+body {
+    padding: 0px;
+    margin: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background-color: var(--mainColor);
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+body>div {
+    color: var(--fontLight);
+    margin-top: var(--lgPadding);
+    padding: var(--medPadding);
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: var(--smPadding);
+    background-color: var(--accentColor2);
+    border-radius: var(--roundBorder);
+}
+
+body>div>#header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+body>div>#header>* {
+    margin: var(--smPadding);
+}
+
+body>div>#selectButtons {
+    display: flex;
+    flex-direction: row;
+    gap: var(--medPadding);
+    justify-content: center;
+    align-items: center;
+}
+
+body>div>#selectButtons>div {
+    display: flex;
+    flex-direction: column;
+    gap: var(--smPadding);
+
+}
+
+body>div>#selectButtons>div>h4 {
+    margin: auto;
+    justify-self: flex-end;
+}
+
+body>div>#selectButtons>div>div {
+    display: flex;
+    flex-direction: row;
+    padding: 0 var(--smPadding);
+    gap: var(--smPadding);
+    align-items: center;
+    justify-content: center;
+}
+
+body>div>#selectButtons>div>.playerSelectionType {}
+
+body>div>#game {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    height: 100%;
+    width: 100%;
+    gap: var(--xSmPadding);
+}
+
+body>div>#game>.cell {
+    height: 120px;
+    width: 120px;
+    background-color: var(--accentColor2);
+    border: var(--medBorder) solid var(--accentColor3);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body>div>#game>.rowStart {
+    border-left: none;
+}
+
+body>div>#game>.rowEnd {
+    border-right: none;
+}
+
+body>div>#game>.colTop {
+    border-top: none;
+}
+
+body>div>#game>.colBottom {
+    border-bottom: none;
+}
+
+body>div>#game>#infoPanel {
+    grid-column: span 3;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 0 0 var(--roundBorder) var(--roundBorder);
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: black;
+    color: var(--fontLight);
+}
+
+footer > * {
+    margin: var(--medPadding) 0;
+
+}

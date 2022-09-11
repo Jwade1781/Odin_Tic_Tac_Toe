@@ -1,0 +1,38 @@
+:root {
+	--xSmPadding: 5px;
+	--smPadding: 10px;
+	--medPadding: 25px;
+	--lgPadding: 50px;
+
+	--mainColor: rgb(54, 55, 64);
+
+	--lightColor: #f3f3f3;
+	--darkColor: #222;
+
+	--accentColor1: rgb(22, 27, 34);
+	--accentColor2: rgb(85, 85, 85);
+	--accentColor3: rgb(54, 55, 64);
+	--accentColor4: rgb(22, 27, 34);
+	--accentColor5: rgba(0,0,0,0.5);
+
+	--fontLight: var(--lightColor);
+	--fontDark: black;
+
+	--smRound: 10px;
+	--medRound: calc((var(--smRound) * 2));
+	--lgRound: calc((var(--medRound) * 2));
+
+	--smBorder: 1px;
+	--medBorder: calc((var(--smBorder) * 2));
+	--lgBorder: calc((var(--medBorder) * 2));
+	--xlgBorder: calc((var(--lgBorder) * 2));
+
+	--roundTopBottomRightBorder: 0% var(--medRound) var(--medRound) 0%;
+	--roundBorder: var(--medRound);
+	--circleBorder: 50%;
+
+	--borderHover: var(--lgBorder) solid var(--mainColor);
+
+	--shadowBox1: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+	--shadowBox2: --shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}

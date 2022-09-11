@@ -1,0 +1,42 @@
+.frostedGlassBackground {
+    backdrop-filter: blur(20px);
+    background-color: rgba(25, 21, 30, 0.8);
+    /*background-color: rgba(255,255,255,0.5);*/
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.darkHover:hover {
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.shadowHover:hover {
+    filter: drop-shadow(1px 1px 2px gray);
+}
+
+
+h1 {
+    font-size: clamp(4rem, -0.875rem + 2vw, 8rem);
+}
+
+h2 {
+    font-size: clamp(1.4rem, -0.875rem + 2vw, 2.4rem);
+}
+
+h3 {
+    font-size: clamp(1.1rem, -0.875rem + 2vw, 2.1rem);
+}
+
+
+h4 {
+    font-size: clamp(1rem, -0.875rem + 2vw, 2rem);
+}
+
+h5 {
+    font-size: clamp(0.9rem, -0.875rem + 2vw, 1.3rem);
+}
+
+h6 {
+    font-size: clamp(0.7rem, -0.875rem + 2vw, 0.9rem);
+}
