@@ -21,7 +21,7 @@ body {
 body>div {
     color: var(--fontLight);
     margin-top: var(--lgPadding);
-    padding: var(--medPadding);
+    padding: var(--lgPadding);
     width: fit-content;
     height: fit-content;
     display: flex;
@@ -55,12 +55,10 @@ body>div>#selectButtons>div {
     display: flex;
     flex-direction: column;
     gap: var(--smPadding);
-
 }
 
 body>div>#selectButtons>div>h4 {
     margin: auto;
-    justify-self: flex-end;
 }
 
 body>div>#selectButtons>div>div {
@@ -70,6 +68,20 @@ body>div>#selectButtons>div>div {
     gap: var(--smPadding);
     align-items: center;
     justify-content: center;
+    width: 100%;
+}
+body>div>#selectButtons>div>div>.playerSelectionType{
+    margin: 0;
+    background-color: white;
+    color: black;
+    padding: var(--xSmPadding) var(--smPadding);
+    width: 100%;
+    text-align: center;
+    border-radius: var(--roundBorder);
+}
+
+body>div>#selectButtons>div>div>.playerSelected{
+    opacity: 0.7;
 }
 
 body>div>#selectButtons>div>.playerSelectionType {}
@@ -84,8 +96,8 @@ body>div>#game {
 }
 
 body>div>#game>.cell {
-    height: 120px;
-    width: 120px;
+    height: clamp(5rem, -0.875rem + 8vw, 15rem);
+    width: clamp(5rem, -0.875rem + 8vw, 15rem);
     background-color: var(--accentColor2);
     border: var(--medBorder) solid var(--accentColor3);
     margin: 0;
@@ -113,12 +125,17 @@ body>div>#game>.colBottom {
 body>div>#game>#infoPanel {
     grid-column: span 3;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: var(--accentColor5);
     border-radius: 0 0 var(--roundBorder) var(--roundBorder);
 }
 
+body>div>#game>#infoPanel:hover {
+    
+    /*color: var(--fontDark);*/
+}
+
 footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     display: flex;

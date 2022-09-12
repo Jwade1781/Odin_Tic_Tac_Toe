@@ -24,3 +24,25 @@
 		transform: rotate(0deg);
 	}
 }
+
+.fillBackground:hover{
+	animation: fillBackgroundAnimation 1s;
+	animation-iteration-count: 1;
+}
+
+@keyframes fillBackgroundAnimation {
+	100%{
+		opacity: 0.5;
+	}
+}
+
+.invertColor:hover{
+	animation: invertColorAnimation 0.3s forwards;
+	animation-iteration-count: 1; 
+}
+
+@keyframes invertColorAnimation {
+	100%{
+		filter: invert(1);
+	}
+}
