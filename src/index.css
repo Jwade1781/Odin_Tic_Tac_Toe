@@ -106,19 +106,19 @@ body>div>#game>.cell {
     align-items: center;
 }
 
-body>div>#game>.rowStart {
+body>div>#game>.row0 {
     border-left: none;
 }
 
-body>div>#game>.rowEnd {
+body>div>#game>.row2 {
     border-right: none;
 }
 
-body>div>#game>.colTop {
+body>div>#game>.col0 {
     border-top: none;
 }
 
-body>div>#game>.colBottom {
+body>div>#game>.col2 {
     border-bottom: none;
 }
 
