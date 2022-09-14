@@ -1,4 +1,4 @@
-const mainHeader = () => {
+const createMainHeader = () => {
     const headerDiv = document.createElement("div");
     const headerText = document.createElement("h4");
     headerText.textContent = "Tic Tac Toe";
@@ -7,7 +7,7 @@ const mainHeader = () => {
     return headerDiv;
 }
 
-const selectButtons = () => {
+const createSelectButtons = () => {
     const createPlayerButtons = playerNumber => {
         const playerButtonDiv = document.createElement("div");
         const playerButtonHeader = document.createElement("h4");
@@ -20,11 +20,11 @@ const selectButtons = () => {
         botHeader.textContent = "Bot";
 
         const buttonHeaderClasses = ["playerSelectionType", "invertColor"];
-        for (const buttonClass of buttonHeaderClasses){
+        for (const buttonClass of buttonHeaderClasses) {
             playerHeader.classList.add(buttonClass);
             botHeader.classList.add(buttonClass);
         }
-
+        playerHeader.classList.add("playerSelected");
         innerDiv.appendChild(playerHeader);
         innerDiv.appendChild(botHeader);
         playerButtonDiv.appendChild(playerButtonHeader);
@@ -39,18 +39,18 @@ const selectButtons = () => {
     return selectButtonsDiv;
 }
 
-const gameBoard = () => {
+const createGameBoard = () => {
     const boardWidth = 3;
     const boardLength = boardWidth;
     const gameBoard = document.createElement("div");
     gameBoard.id = "game";
 
-    for (let col = 0; col < boardWidth; col++){
-        for (let row = 0; row < boardLength; row++){
+    for (let col = 0; col < boardWidth; col++) {
+        for (let row = 0; row < boardLength; row++) {
             const gameCell = document.createElement("div");
-            const cellClassList = ["row" + (row%boardWidth), "col" +(col%boardLength), "cell", "invertColor", "darkHover"];
+            const cellClassList = ["row" + (row % boardWidth), "col" + (col % boardLength), "cell", "invertColor", "darkHover"];
             for (const className of cellClassList)
-                gameCell.classList.add(className);    
+                gameCell.classList.add(className);
             gameBoard.appendChild(gameCell);
         }
     }
@@ -65,23 +65,25 @@ const gameBoard = () => {
     return gameBoard;
 }
 
-function createDom(){
+const createStartupDom = () => {
     const mainDiv = document.createElement("div");
     mainDiv.id = "mainDiv";
     mainDiv.classList.add("frostedGlassBackground");
 
-    const elements = [mainHeader(), selectButtons(), gameBoard()]
+    const elements = [createMainHeader(), createSelectButtons(), createGameBoard()]
 
     for (const element of elements)
         mainDiv.appendChild(element);
 
     document.body.appendChild(mainDiv);
-    return true;
+    return {"createPass" : true, "mainDiv" : mainDiv};
 }
 
-function main(){
-    if (!createDom())
+const main = () => {
+    const startUpDom = createStartupDom();
+
+    if (!startUpDom["createPass"])
         throw 'Dom was not successfully created';
 }
 
-window.addEventListener("load", ()=> main());
+window.addEventListener("load", () => main());

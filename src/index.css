@@ -70,7 +70,8 @@ body>div>#selectButtons>div>div {
     justify-content: center;
     width: 100%;
 }
-body>div>#selectButtons>div>div>.playerSelectionType{
+
+body>div>#selectButtons>div>div>.playerSelectionType {
     margin: 0;
     background-color: white;
     color: black;
@@ -80,8 +81,9 @@ body>div>#selectButtons>div>div>.playerSelectionType{
     border-radius: var(--roundBorder);
 }
 
-body>div>#selectButtons>div>div>.playerSelected{
-    opacity: 0.7;
+body>div>#selectButtons>div>div>.playerSelected {
+    filter: invert(1);
+    border: var(--smBorder) solid var(--accentColor2);
 }
 
 body>div>#selectButtons>div>.playerSelectionType {}
@@ -92,14 +94,15 @@ body>div>#game {
     grid-template-rows: repeat(3, 1fr);
     height: 100%;
     width: 100%;
-    gap: var(--xSmPadding);
+    gap: var(--smPadding);
+    margin-top: var(--medPadding);
 }
 
 body>div>#game>.cell {
-    height: clamp(5rem, -0.875rem + 8vw, 15rem);
-    width: clamp(5rem, -0.875rem + 8vw, 15rem);
+    height: clamp(7rem, -0.875rem + 8vw, 15rem);
+    width: calc(100% - (2* var(--medBorder)));
     background-color: var(--accentColor2);
-    border: var(--medBorder) solid var(--accentColor3);
+    border: var(--medBorder) solid var(--fontLight);
     margin: 0;
     display: flex;
     justify-content: center;
@@ -107,19 +110,19 @@ body>div>#game>.cell {
 }
 
 body>div>#game>.row0 {
-    border-left: none;
+    border-left: var(--medBorder) solid transparent;
 }
 
 body>div>#game>.row2 {
-    border-right: none;
+    border-right: var(--medBorder) solid transparent;
 }
 
 body>div>#game>.col0 {
-    border-top: none;
+    border-top: var(--medBorder) solid transparent;
 }
 
 body>div>#game>.col2 {
-    border-bottom: none;
+    border-bottom: var(--medBorder) solid transparent;
 }
 
 body>div>#game>#infoPanel {
@@ -127,11 +130,6 @@ body>div>#game>#infoPanel {
     text-align: center;
     background-color: var(--accentColor5);
     border-radius: 0 0 var(--roundBorder) var(--roundBorder);
-}
-
-body>div>#game>#infoPanel:hover {
-    
-    /*color: var(--fontDark);*/
 }
 
 footer {
@@ -145,7 +143,7 @@ footer {
     color: var(--fontLight);
 }
 
-footer > * {
+footer>* {
     margin: var(--medPadding) 0;
 
 }
