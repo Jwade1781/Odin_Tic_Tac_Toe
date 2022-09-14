@@ -125,7 +125,7 @@ body>div>#game>.col2 {
     border-bottom: var(--medBorder) solid transparent;
 }
 
-body>div>#game>#infoPanel {
+body>div>#game>.infoPanel {
     grid-column: span 3;
     text-align: center;
     background-color: var(--accentColor5);
