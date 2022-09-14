@@ -14,21 +14,29 @@ const createSelectButtons = () => {
         const playerButtonDiv = document.createElement("div");
         const playerButtonHeader = document.createElement("h4");
         playerButtonHeader.textContent = `Player ${playerNumber}`;
-        const innerDiv = document.createElement("div");
-        const playerHeader = document.createElement("h4");
-        playerHeader.textContent = "Player";
-        playerHeader.id = `player${playerNumber}Select`;
-        const botHeader = document.createElement("h4");
-        botHeader.textContent = "Bot";
+
+        const createButton = (playerNumber, playerBot, buttonHeaderClasses) => {
+            const buttonHeader = document.createElement("h4");
+            playerBot ? buttonHeader.textContent = "Bot" : buttonHeader.textContent = "Player";
+            for (const buttonClass of buttonHeaderClasses) buttonHeader.classList.add(buttonClass);
+
+            buttonHeader.addEventListener("click", () => {
+                const classQuery = `playerSelected${playerNumber}`;
+                if (document.querySelector("." + classQuery)) document.querySelector("." + classQuery).classList.remove(classQuery);
+                buttonHeader.classList.add(classQuery);
+            });
+
+            return buttonHeader;
+        }
 
         const buttonHeaderClasses = ["playerSelectionType", "invertColor"];
-        for (const buttonClass of buttonHeaderClasses) {
-            playerHeader.classList.add(buttonClass);
-            botHeader.classList.add(buttonClass);
-        }
-        playerHeader.classList.add("playerSelected");
-        innerDiv.appendChild(playerHeader);
-        innerDiv.appendChild(botHeader);
+        const playerButton = createButton(playerNumber, false, buttonHeaderClasses);
+        const botButton = createButton(playerNumber, true, buttonHeaderClasses);
+
+        playerButton.classList.add(`playerSelected${playerNumber}`);
+        const innerDiv = document.createElement("div");
+        innerDiv.appendChild(playerButton);
+        innerDiv.appendChild(botButton);
         playerButtonDiv.appendChild(playerButtonHeader);
         playerButtonDiv.appendChild(innerDiv);
         return playerButtonDiv;
@@ -64,8 +72,7 @@ const createGameBoard = () => {
             })
 
             const cellClassList = ["row" + (row % boardWidth), "col" + (col % boardLength), "cell", "invertColor", "darkHover"];
-            for (const className of cellClassList)
-                gameCell.classList.add(className);
+            for (const className of cellClassList) gameCell.classList.add(className);
             gameBoard.appendChild(gameCell);
             i++;
         }
@@ -93,8 +100,7 @@ const createStartupDom = () => {
 
     const elements = [createMainHeader(), createSelectButtons(), createGameBoard()]
 
-    for (const element of elements)
-        mainDiv.appendChild(element);
+    for (const element of elements) mainDiv.appendChild(element);
 
     document.body.appendChild(mainDiv);
     return { "createPass": true, "mainDiv": mainDiv };
@@ -140,8 +146,7 @@ const gameController = () => {
 
         let cells = document.querySelectorAll(".cell");
         for (cell of cells) {
-            if (cell.lastElementChild)
-                cell.removeChild(cell.lastElementChild);
+            if (cell.lastElementChild) cell.removeChild(cell.lastElementChild);
         }
     }
     const checkWin = () => {
@@ -153,11 +158,8 @@ const gameController = () => {
 
         for (let i = 0; i < winConditions.length; i++) {
             for (let j = 0; j < winConditions[i].length; j++) {
-                if (!(currentPlayer.getMoves().includes(winConditions[i][j])))
-                    break;
-
-                if (j + 1 === winConditions[i].length)
-                    return true;
+                if (!(currentPlayer.getMoves().includes(winConditions[i][j]))) break;
+                if (j + 1 === winConditions[i].length) return true;
             }
         }
         return false;
@@ -193,9 +195,7 @@ const main = () => {
     gameControl = gameController();
     const startUpDom = createStartupDom();
 
-    if (!startUpDom["createPass"])
-        throw 'Dom was not successfully created';
-
+    if (!startUpDom["createPass"]) throw 'Dom was not successfully created';
 }
 
 window.addEventListener("load", () => main());

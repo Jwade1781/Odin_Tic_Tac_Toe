@@ -81,7 +81,7 @@ body>div>#selectButtons>div>div>.playerSelectionType {
     border-radius: var(--roundBorder);
 }
 
-body>div>#selectButtons>div>div>.playerSelected {
+body>div>#selectButtons>div>div>[class*="playerSelected"] {
     filter: invert(1);
     border: var(--smBorder) solid var(--accentColor2);
 }
@@ -99,7 +99,7 @@ body>div>#game {
 }
 
 body>div>#game>.cell {
-    height: clamp(7rem, -0.875rem + 8vw, 15rem);
+    height: clamp(5rem, -0.875rem + 8vw, 15rem);
     width: calc(100% - (2* var(--medBorder)));
     background-color: var(--accentColor2);
     border: var(--medBorder) solid var(--fontLight);
