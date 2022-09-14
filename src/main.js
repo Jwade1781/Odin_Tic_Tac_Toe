@@ -60,6 +60,8 @@ const createGameBoard = () => {
         for (let row = 0; row < boardLength; row++) {
             const gameCell = document.createElement("div");
             const cellNum = i;
+            gameCell.id = i;
+
             gameCell.addEventListener("click", () => {
                 if (gameControl.getGameActive() && !(gameCell.firstChild)) {
                     const playerMoveHeader = document.createElement("h1");
@@ -117,8 +119,10 @@ const player = (playerNumber, moveChar, botBool) => {
 }
 
 const players = () => {
-    const getPlayer1 = player(1, "X", false);
-    const getPlayer2 = player(2, "O", false);
+    const checkBot = playerNumber => { return document.querySelector(`.playerSelected${playerNumber}`).textContent === "Bot"; }
+
+    const getPlayer1 = player(1, "X", checkBot(1));
+    const getPlayer2 = player(2, "O", checkBot(2));
     return { getPlayer1, getPlayer2 };
 }
 
@@ -128,22 +132,47 @@ const gameController = () => {
     let gameActive;
 
     const getCurrentPlayer = () => currentPlayer;
-    const toggleCurrentPlayer = () => currentPlayer === playerList.getPlayer1 ? currentPlayer = playerList.getPlayer2 : currentPlayer = playerList.getPlayer1;
+    const toggleCurrentPlayer = () => {
+        currentPlayer === playerList.getPlayer1 ? currentPlayer = playerList.getPlayer2 : currentPlayer = playerList.getPlayer1;
+        checkBotMove();
+    }
+    const checkBotMove = () => { if (currentPlayer.getBotBool()) botMove(); }
+    const botMove = () => {
+        const botTimeoutMs = 50;
+        setTimeout(() => {
+            while (true && gameActive) {
+                let randomMove = Math.floor(Math.random() * 9);
+                const playerMoveHeader = document.createElement("h1");
+                let gameCell = document.getElementById(randomMove);
+                if (gameCell.hasChildNodes()) continue;
+
+                let playerMove = move(randomMove);
+                if (playerMove) {
+                    gameCell = document.getElementById(randomMove);
+                    playerMoveHeader.textContent = playerMove;
+                    gameCell.appendChild(playerMoveHeader);
+                    break;
+                }
+            }
+        }, botTimeoutMs);
+    }
 
     const getGameActive = () => gameActive;
     const toggleGameActive = () => { gameActive ? gameActive = false : gameActive = true };
 
     const writeGameButton = (string) => document.querySelector("#startGameButton").firstChild.textContent = string;
     const writePlayerTurn = () => writeGameButton(`Player ${currentPlayer.getPlayerNumber()}'s Turn:  ${currentPlayer.getMoveChar()}`);
-    const writePlayerWin = () => {
-        window.alert(`Player ${currentPlayer.getPlayerNumber()} Wins!`);
-        writeGameButton("Start Game");
+    const writePlayerWin = () => { window.alert(`Player ${currentPlayer.getPlayerNumber()} Wins!`); }
+
+    const writePlayerTie = () => {
+        window.alert(`Tie!`);
     }
     const reset = () => {
         playerList = players();
         currentPlayer = playerList.getPlayer1;
         gameActive = false;
 
+        writeGameButton("Start Game");
         let cells = document.querySelectorAll(".cell");
         for (cell of cells) {
             if (cell.lastElementChild) cell.removeChild(cell.lastElementChild);
@@ -168,23 +197,29 @@ const gameController = () => {
     const move = (cellNum) => {
         const playedMove = currentPlayer.getMoveChar();
         currentPlayer.addMove(cellNum);
-        if (checkWin()) {
-            toggleGameActive();
+
+        if (checkWin()) 
             writePlayerWin();
-            reset();
-            return false;
-        }
+
+
+        else if (playerList.getPlayer1.getMoves().length + playerList.getPlayer2.getMoves().length === 9)
+            writePlayerTie();
 
         else {
             toggleCurrentPlayer();
             writePlayerTurn();
             return playedMove;
         }
+
+        toggleGameActive();
+        reset();
+        return false;
     }
 
     const startGame = () => {
         reset();
         toggleGameActive();
+        checkBotMove();
         writePlayerTurn();
     }
 
